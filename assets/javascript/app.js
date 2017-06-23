@@ -35,13 +35,6 @@ database.ref().on("child_added", function(childSnapshot) {
       console.log(childSnapshot.val().firstTrain);
       console.log(childSnapshot.val().frequency);
 
-      // full list of items to the well
-      $(".name").append("<p>" + childSnapshot.val().name + "</p>");
-      $(".destination").append("<p>" + childSnapshot.val().destination + "</p>");
-      $(".next-arrival").append("<p>" + nextTrain + "</p>");
-      $(".frequency").append("<p>" + childSnapshot.val().frequency + "</p>");
-      $(".minutes-away").append("<p>" + tMinutesTillTrain + "</p>");
-
     var tFrequency = trainData.frequency;
     // Time is entered by user
     var firstTime = trainData.firstTrain;
@@ -64,6 +57,13 @@ database.ref().on("child_added", function(childSnapshot) {
     var nextTrain = moment().add(tMinutesTillTrain, "minutes");
     console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
 
+      // full list of items to the well
+      $(".name").append("<p>" + childSnapshot.val().name + "</p>");
+      $(".destination").append("<p>" + childSnapshot.val().destination + "</p>");
+      $(".minutes-away").append("<p>" + tMinutesTillTrain + "</p>");
+      $(".next-arrival").append("<p>" + moment(nextTrain).format("hh:mm") + "</p>");
+      $(".frequency").append("<p>" + childSnapshot.val().frequency + "</p>");
+      
       // empty form after submit
       $("#train-name").val("");
       $("#destination").val("");
