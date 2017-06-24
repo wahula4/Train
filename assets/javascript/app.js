@@ -35,6 +35,9 @@ database.ref().on("child_added", function(childSnapshot) {
       console.log(childSnapshot.val().firstTrain);
       console.log(childSnapshot.val().frequency);
 
+      // pull trainData value from firebase
+    var trainData = childSnapshot.val();
+
     var tFrequency = trainData.frequency;
     // Time is entered by user
     var firstTime = trainData.firstTrain;
@@ -61,7 +64,7 @@ database.ref().on("child_added", function(childSnapshot) {
       $(".name").append("<p>" + childSnapshot.val().name + "</p>");
       $(".destination").append("<p>" + childSnapshot.val().destination + "</p>");
       $(".minutes-away").append("<p>" + tMinutesTillTrain + "</p>");
-      $(".next-arrival").append("<p>" + moment(nextTrain).format("hh:mm") + "</p>");
+      $(".next-arrival").append("<p>" + moment(nextTrain).format("hh:mm A") + "</p>");
       $(".frequency").append("<p>" + childSnapshot.val().frequency + "</p>");
       
       // empty form after submit
